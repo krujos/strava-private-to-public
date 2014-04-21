@@ -25,6 +25,9 @@ redirect_url = "http://127.0.0.1:5000"
 
 @app.get('/')
 def index():
+    """Return static content, index.html only, or handle callbacks."""
+
+    #Call back from Strava for token exchange.
     if request.args.get('code'):
         code = request.args.get('code')
         session['CODE'] = code
@@ -32,8 +35,6 @@ def index():
         get_token(request.args.get('code'))
         return "Welcome %s" % session['athlete']['firstname']
 
-
-    """Return static content, index.html only"""
     return redirect(url_for('static', filename='index.html'))
 
 
@@ -55,12 +56,6 @@ def get_token(code):
 def login():
     return "https://www.strava.com/oauth/authorize?client_id=%s&response_type=code&redirect_uri=%s" \
            % (STRAVA_CLIENT_ID, redirect_url)
-
-    #response = requests.get("https://www.strava.com/oauth/authorize",
-    #                    params={"client_id": STRAVA_CLIENT_ID,
-    #                            "response_type": 'code',
-    #                            "redirect_uri": "http://localhost:/",
-    #                            "scope": "view_private,write"})
 
 
 if __name__ == '__main__':
