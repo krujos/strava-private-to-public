@@ -19,19 +19,20 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
     $scope.athlete_info = null;
 
     $scope.loadUser = function() {
-        $http.get('/athleteinfo').success(function (data) {
+        $http.get('/athlete').success(function (data) {
             $scope.athlete_info = data;
-            $scope.user = data.firstname + " " + data.lastname;
+            $scope.user = data.name
         });
     };
 
+    $scope.rides = null
     $scope.privateRides = function() {
-        return [
-            {ride: 'ride 1', data:'some data', next:'the next'},
-            {ride: 'ride 2', data: 'some data', next:'the next next'}
-        ];
+        $http.get('/privaterides').success(function(data) {
+            $scope.rides = data;
+        });
     };
     $scope.loadUser();
+    $scope.privateRides();
 
 });
 
