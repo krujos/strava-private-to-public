@@ -8,6 +8,9 @@
 <body ng-app="stravaApp">
     <div id="all" ng-controller="StravaUserController">
         <p>Welcome {{user}}</p>
+
+        <p>You have the following private rides:</p>
+        <ul><li ng-repeat="ride in privateRides()">ride.ride</li></ul>
     </div>
 </body>
 </html>

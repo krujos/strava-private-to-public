@@ -25,6 +25,12 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
         });
     };
 
+    $scope.privateRides = function() {
+        return [
+            {ride: 'ride 1', data:'some data', next:'the next'},
+            {ride: 'ride 2', data: 'some data', next:'the next next'}
+        ];
+    };
     $scope.loadUser();
 
 });
