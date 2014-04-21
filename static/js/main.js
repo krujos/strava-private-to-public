@@ -31,6 +31,14 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
             $scope.rides = data;
         });
     };
+
+    $scope.isPublicToString = function(ride) {
+        if (ride.private) {
+            return "private";
+        }
+        return "public";
+    };
+
     $scope.loadUser();
     $scope.privateRides();
 
