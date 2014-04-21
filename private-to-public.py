@@ -37,6 +37,7 @@ def index():
 
     return redirect(url_for('static', filename='index.html'))
 
+
 @app.get('/athleteinfo')
 def get_current_user():
     try:
@@ -61,7 +62,7 @@ def get_token(code):
 
 @app.get('/login')
 def login():
-    return "https://www.strava.com/oauth/authorize?client_id=%s&response_type=code&redirect_uri=%s" \
+    return "https://www.strava.com/oauth/authorize?client_id=%s&response_type=code&redirect_uri=%s&scope=view_private,write" \
            % (STRAVA_CLIENT_ID, redirect_url)
 
 
