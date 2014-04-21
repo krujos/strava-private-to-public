@@ -1,6 +1,6 @@
 from __future__ import print_function
 import requests
-from flask import Flask, redirect, url_for, request, session
+from flask import Flask, redirect, url_for, request, session, abort, jsonify
 import os
 import sys
 import logging
@@ -33,9 +33,16 @@ def index():
         session['CODE'] = code
         app.logger.debug("Code = %s " % code)
         get_token(request.args.get('code'))
-        return "Welcome %s" % session['athlete']['firstname']
+        return redirect(url_for('static', filename='loggedin.html'))
 
     return redirect(url_for('static', filename='index.html'))
+
+@app.get('/athleteinfo')
+def get_current_user():
+    try:
+        return jsonify(session['athlete'])
+    except KeyError:
+        abort(404)
 
 
 def get_token(code):
