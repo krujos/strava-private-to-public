@@ -79,7 +79,7 @@ def get_private_rides():
     response = requests.get(url, data=data)
     app.logger.debug("Strava return code = %d" % response.status_code)
     app.logger.debug(response.json())
-    return json.dumps(response.json())
+    return json.dumps(response.json())#there has to be a better way.
 
 
 if __name__ == '__main__':

@@ -39,6 +39,13 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
         return "public";
     };
 
+    $scope.isOnATainerString = function(ride) {
+        if (ride.trainer) {
+            return "on a trainer";
+        }
+        return "outside";
+    };
+
     $scope.loadUser();
     $scope.privateRides();
 

@@ -10,7 +10,8 @@
         <p>Welcome {{user}}</p>
 
         <p>You have the following private rides:</p>
-        <ul><li ng-repeat="ride in rides">{{ride.name}} it is {{isPublicToString(ride)}}</li></ul>
+        <ul><li ng-repeat="ride in rides">{{ride.name}} it is {{isPublicToString(ride)}} and it was
+            {{isOnATainerString(ride)}}.</li></ul>
     </div>
 </body>
 </html>
