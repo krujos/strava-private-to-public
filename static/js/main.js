@@ -53,6 +53,15 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
         return "ride"
     };
 
+    $scope.showAll = true;
+    $scope.shouldHide = function(ride) {
+        //If the ride is on a trainer and public it's an error
+        if ( !$scope.showAll && "ride" == $scope.isRideInError(ride)) {
+            return true;
+        }
+        return false;
+    }
+
     $scope.loadUser();
     $scope.privateRides();
 

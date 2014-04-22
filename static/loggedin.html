@@ -11,8 +11,10 @@
         <p>Welcome {{user}}</p>
 
         <p>You have the following private rides:</p>
-        <ul><li ng-repeat="ride in rides" ng-class="isRideInError(ride)">{{ride.name}} it is {{isPublicToString(ride)}} and it was
-            {{isOnATainerString(ride)}}.</li></ul>
+        <a ng-click="showAll = !showAll" href="#">toggle just errors</a>
+        <ul><li ng-repeat="ride in rides" ng-class="isRideInError(ride)" ng-hide="shouldHide(ride)">
+            {{ride.name}} it is {{isPublicToString(ride)}} and it was {{isOnATainerString(ride)}}.
+        </li></ul>
     </div>
 </body>
 </html>
