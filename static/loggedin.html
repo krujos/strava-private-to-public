@@ -4,13 +4,14 @@
     <title>Strava Converter</title>
     <script src="js/lib/angular.js"></script>
     <script src="js/main.js"></script>
+    <link rel="stylesheet" href="styles/styles.css"/>
 </head>
 <body ng-app="stravaApp">
     <div id="all" ng-controller="StravaUserController">
         <p>Welcome {{user}}</p>
 
         <p>You have the following private rides:</p>
-        <ul><li ng-repeat="ride in rides">{{ride.name}} it is {{isPublicToString(ride)}} and it was
+        <ul><li ng-repeat="ride in rides" ng-class="isRideInError(ride)">{{ride.name}} it is {{isPublicToString(ride)}} and it was
             {{isOnATainerString(ride)}}.</li></ul>
     </div>
 </body>
