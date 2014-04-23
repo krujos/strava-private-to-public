@@ -101,6 +101,6 @@ if __name__ == '__main__':
     app.logger.setLevel(logging.DEBUG)
     file_handler = logging.FileHandler('strava.log')
     app.logger.addHandler(file_handler)
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
 
 

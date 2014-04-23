@@ -20,6 +20,7 @@
 
         <ol>
             <li ng-repeat="ride in rides" ng-class="getRideClassString(ride)" ng-hide="shouldHide(ride)">
+                <!--TODO the ng-hide below is just for the fix link, ignores the controller show var... refactor-->
                 <a ng-hide='"ride"==getRideClassString(ride)' ng-click="fix(ride)" href="">fix</a>
                 {{ride.name}} it is {{isPublicToString(ride)}} and it was {{isOnATainerString(ride)}}.
             </li>
