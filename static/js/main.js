@@ -48,7 +48,10 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
 
     $scope.isRideInError = function(ride) {
         if(ride.trainer && !ride.private) {
-            return "publictrainer"
+            return "publictrainer";
+        }
+        if(!ride.trainer && ride.private) {
+            return "privateoutdoor";
         }
         return "ride"
     };
