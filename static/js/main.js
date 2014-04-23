@@ -92,8 +92,15 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
         return false;
     };
 
+    //Make trainer rides private and outdoor rides public.
     $scope.fix = function(ride) {
-        alert("Fixing " + ride.name);
+        if ( $scope.isPublicTrainer(ride)) {
+            ride.private = true;
+        } else if ( $scope.isPrivateOutside(ride)) {
+            ride.private = false;
+        }
+
+        alert("Fixing " + ride.name + " ride is now "+ $scope.isRideInError(ride) );
     };
 
     $scope.loadUser();
