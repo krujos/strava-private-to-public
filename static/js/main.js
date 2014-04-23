@@ -73,7 +73,11 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
         return !ride.trainer && ride.private;
     };
 
-    $scope.isRideInError = function(ride) {
+    $scope.rideHasError = function(ride) {
+        return $scope.isPublicTrainer(ride) || $scope.isPrivateOutside(ride);
+    };
+
+    $scope.getRideClassString = function(ride) {
         if($scope.isPublicTrainer(ride)) {
             return "publictrainer";
         }
@@ -86,7 +90,7 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
     $scope.showAll = true;
     $scope.shouldHide = function(ride) {
         //If the ride is on a trainer and public it's an error
-        if ( !$scope.showAll && "ride" == $scope.isRideInError(ride)) {
+        if ( !$scope.showAll && "ride" == $scope.getRideClassString(ride)) {
             return true;
         }
         return false;
@@ -115,6 +119,13 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
     //Fix them.
     $scope.fixAll = function() {
         $scope.isFixing = true;
+        var ridesInError = [];
+        $scope.rides.forEach(function(ride) {
+            if ($scope.rideHasError(ride)) {
+                ridesInError.push(ride);
+            }
+        });
+        $scope.toBeFixed = ridesInError.length;
     };
 
     $scope.isFixing = false;
