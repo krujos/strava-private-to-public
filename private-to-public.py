@@ -82,6 +82,14 @@ def get_rides(page=1):
     app.logger.debug(response.json())
     return json.dumps(response.json())#there has to be a better way.
 
+@app.put('/ride/<ride_id>')
+def update_ride(ride_id):
+    ride = request.json
+    app.logger.debug(ride)
+    if int(ride['id']) != int(ride_id):
+        abort(400)
+    app.logger.debug("Updating ride " + ride_id)
+    return jsonify(ride)
 
 
 if __name__ == '__main__':

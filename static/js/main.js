@@ -94,13 +94,21 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
 
     //Make trainer rides private and outdoor rides public.
     $scope.fix = function(ride) {
-        if ( $scope.isPublicTrainer(ride)) {
-            ride.private = true;
-        } else if ( $scope.isPrivateOutside(ride)) {
-            ride.private = false;
+        var newRide = angular.copy(ride);
+
+        if ( $scope.isPublicTrainer(newRide)) {
+            newRide.private = true;
+        } else if ( $scope.isPrivateOutside(newRide)) {
+            newRide.private = false;
         }
 
-        alert("Fixing " + ride.name + " ride is now "+ $scope.isRideInError(ride) );
+        $http.put('/ride/' + newRide.id, newRide).success(function(data) {
+            //TODO: Isn't working as I expected, when I just do ride = data the changes are't  reflected in the ui
+            ride.trainer = data.trainer;
+            ride.private = data.private;
+        }).error(function() {
+            alert("failed");
+        });
     };
 
     $scope.loadUser();
