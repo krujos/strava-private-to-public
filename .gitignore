@@ -13,7 +13,7 @@ build/
 develop-eggs/
 dist/
 eggs/
-lib/
+#lib/
 lib64/
 parts/
 sdist/
@@ -54,4 +54,3 @@ docs/_build/
 
 .idea/ static.idea/
 .idea/
-status/js/.DS_Store
