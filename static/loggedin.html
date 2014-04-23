@@ -12,6 +12,12 @@
 
         <p>You have the following private rides:</p>
         <a ng-click="showAll = !showAll" href="">toggle just errors</a>
+        <a ng-click="fixAll()" href="">fix all</a>
+
+        <div ng-hide="!isFixing">
+            <p>Fixing {{currentlyFixing}} of {{toBeFixed}}</p>
+        </div>
+
         <ol>
             <li ng-repeat="ride in rides" ng-class="isRideInError(ride)" ng-hide="shouldHide(ride)">
                 <a ng-hide='"ride"==isRideInError(ride)' ng-click="fix(ride)" href="">fix</a>

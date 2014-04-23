@@ -111,6 +111,15 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
         });
     };
 
+    //For all rides in browser that are flagged as errors
+    //Fix them.
+    $scope.fixAll = function() {
+        $scope.isFixing = true;
+    };
+
+    $scope.isFixing = false;
+    $scope.toBeFixed = 0;
+    $scope.currentlyFixing = 0;
     $scope.loadUser();
     $scope.privateRides();
 
