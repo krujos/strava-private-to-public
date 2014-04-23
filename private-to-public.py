@@ -89,7 +89,12 @@ def update_ride(ride_id):
     if int(ride['id']) != int(ride_id):
         abort(400)
     app.logger.debug("Updating ride " + ride_id)
-    return jsonify(ride)
+    data = {"access_token": session['token']}
+    params = {"private": int(ride['private']), "trainer": int(ride['trainer'])}
+    url = "https://www.strava.com/api/v3/activities/" + ride_id
+    response = requests.put(url, data=data, params=params)
+    app.logger.debug(response.status_code)
+    return json.dumps(response.json())
 
 
 if __name__ == '__main__':
