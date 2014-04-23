@@ -29,6 +29,19 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
     $scope.privateRides = function() {
         $http.get('/rides').success(function(data) {
             $scope.rides = data;
+            $scope.page += 1;
+        });
+    };
+
+    $scope.page = 1;
+    $scope.getNextPage = function() {
+        $http.get('/rides/' + $scope.page).success(function(data) {
+            if (0 == data.length) {
+                $scope.page = -1;
+                return;
+            }
+            $scope.rides = $scope.rides.concat(data);
+            $scope.page +=1;
         });
     };
 
