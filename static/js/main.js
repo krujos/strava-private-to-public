@@ -96,8 +96,12 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
         return false;
     };
 
-    //Make trainer rides private and outdoor rides public.
-    $scope.fix = function(ride) {
+    /**
+     * @param ride to fix
+     * @param successFunc optional user supplied success function to be called.
+     * @param successFuncData to be passed to user function.
+     */
+    $scope.fix = function(ride, successFunc, successFuncData) {
         var newRide = angular.copy(ride);
 
         if ( $scope.isPublicTrainer(newRide)) {
@@ -110,6 +114,9 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
             //TODO: Isn't working as I expected, when I just do ride = data the changes are't  reflected in the ui
             ride.trainer = data.trainer;
             ride.private = data.private;
+            if (null != successFunc) {
+                successFunc(successFuncData);
+            }
         }).error(function() {
             alert("failed");
         });
@@ -126,6 +133,22 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
             }
         });
         $scope.toBeFixed = ridesInError.length;
+
+        $scope.fixRides(ridesInError);
+    };
+
+    //Recursive function to traverse down a list and fix each ride in error.
+    //Recursive because we call our self from the success function of the last
+    //put instead of a normal loop.
+    $scope.fixRides = function(ridesInError) {
+        //We've fixed everything, turn off the status div.
+        if (0 == ridesInError.length) {
+            $scope.isFixing = false;
+            return;
+        }
+        var rideToFix = ridesInError.shift();
+        $scope.currentlyFixing += 1;
+        $scope.fix(rideToFix, $scope.fixRides, ridesInError);
     };
 
     $scope.isFixing = false;
