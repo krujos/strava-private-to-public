@@ -11,9 +11,9 @@
         <p>Welcome {{user}}</p>
 
         <p>You have the following private rides:</p>
-        <a ng-click="showAll = !showAll" href="#">toggle just errors</a>
+        <a ng-click="showAll = !showAll" href="">toggle just errors</a>
         <ul><li ng-repeat="ride in rides" ng-class="isRideInError(ride)" ng-hide="shouldHide(ride)">
-            {{ride.name}} it is {{isPublicToString(ride)}} and it was {{isOnATainerString(ride)}}.
+            <a ng-hide='"ride" == isRideInError(ride)' href="">fix</a> {{ride.name}} it is {{isPublicToString(ride)}} and it was {{isOnATainerString(ride)}}.
         </li></ul>
     </div>
 </body>
