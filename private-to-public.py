@@ -98,7 +98,7 @@ def update_ride(ride_id):
 
 
 if __name__ == '__main__':
-    app.logger.setLevel(logging.DEBUG)
+    app.logger.setLevel(logging.INFO)
     file_handler = logging.FileHandler('strava.log')
     app.logger.addHandler(file_handler)
     app.run()
