@@ -1,6 +1,6 @@
 from __future__ import print_function
 import requests
-from flask import Flask, redirect, url_for, request, session, abort, jsonify, g
+from flask import Flask, redirect, url_for, request, session, abort, jsonify
 import os
 import sys
 import logging
