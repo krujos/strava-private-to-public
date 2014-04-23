@@ -36,12 +36,18 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
     $scope.page = 1;
     $scope.getNextPage = function() {
         $http.get('/rides/' + $scope.page).success(function(data) {
+            //Either ran out of pages or we didn't get back a full page.
             if (0 == data.length) {
                 $scope.page = -1;
                 return;
             }
+            //TODO 50 is the page length on the server side, should sent it in & decouple.
             $scope.rides = $scope.rides.concat(data);
-            $scope.page +=1;
+            if ( 50 != data.length ) {
+                $scope.page = -1;
+            } else {
+                $scope.page += 1;
+            }
         });
     };
 
