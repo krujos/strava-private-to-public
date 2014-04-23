@@ -65,11 +65,19 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
         return "outside";
     };
 
+    $scope.isPublicTrainer = function(ride) {
+        return ride.trainer && !ride.private;
+    };
+
+    $scope.isPrivateOutside = function(ride) {
+        return !ride.trainer && ride.private;
+    };
+
     $scope.isRideInError = function(ride) {
-        if(ride.trainer && !ride.private) {
+        if($scope.isPublicTrainer(ride)) {
             return "publictrainer";
         }
-        if(!ride.trainer && ride.private) {
+        if($scope.isPrivateOutside(ride)) {
             return "privateoutdoor";
         }
         return "ride"
@@ -82,7 +90,11 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
             return true;
         }
         return false;
-    }
+    };
+
+    $scope.fix = function(ride) {
+        alert("Fixing " + ride.name);
+    };
 
     $scope.loadUser();
     $scope.privateRides();

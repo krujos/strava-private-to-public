@@ -14,7 +14,7 @@
         <a ng-click="showAll = !showAll" href="">toggle just errors</a>
         <ol>
             <li ng-repeat="ride in rides" ng-class="isRideInError(ride)" ng-hide="shouldHide(ride)">
-                <a ng-hide='"ride"==isRideInError(ride)' href="">fix</a>
+                <a ng-hide='"ride"==isRideInError(ride)' ng-click="fix(ride)" href="">fix</a>
                 {{ride.name}} it is {{isPublicToString(ride)}} and it was {{isOnATainerString(ride)}}.
             </li>
         </ol>
