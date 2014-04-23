@@ -71,15 +71,17 @@ def login():
            % (STRAVA_CLIENT_ID, redirect_url)
 
 
-@app.get('/privaterides')
-def get_private_rides():
+@app.get('/rides/<page>')
+@app.get('/rides')
+def get_rides(page=1):
     """Attempt to get all of a users rides so we can filter out the private ones"""
     url = "https://www.strava.com/api/v3/athlete/activities"
-    data = {"per_page": 50, "page": 1, "access_token": session['token']}
+    data = {"per_page": 50, "page": page, "access_token": session['token']}
     response = requests.get(url, data=data)
     app.logger.debug("Strava return code = %d" % response.status_code)
     app.logger.debug(response.json())
     return json.dumps(response.json())#there has to be a better way.
+
 
 
 if __name__ == '__main__':

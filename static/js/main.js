@@ -27,7 +27,7 @@ stravaApp.controller('StravaUserController', function StravaUserController($scop
 
     $scope.rides = null
     $scope.privateRides = function() {
-        $http.get('/privaterides').success(function(data) {
+        $http.get('/rides').success(function(data) {
             $scope.rides = data;
         });
     };
