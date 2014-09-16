@@ -7,7 +7,7 @@ To setup:
 Register a new strava app (https://www.strava.com/settings/api)
 Set the auth callback to localhost:5000 
 Create a new virtual env
-pip install requirements.txt
+pip install -r requirements.txt
 Change the strava client ID to whatever yours is in private-to-public.py
 export CLIENT_SECRET=whatever strava told you your client secret was
 python public-to-private.py

@@ -1,5 +1,5 @@
 """
-Really could have implemented this all in javascript on the client side... 
+Really could have implemented this all in javascript on the client side...
 """
 from __future__ import print_function
 import requests
