@@ -14,4 +14,4 @@ python public-to-private.py
 navigate to http://localhost:5000
 ```
 
-Could proabably be hosted, should there be enough interest raise an issue and I'll stick it on openshift of something.
+Could proabably be hosted, should there be enough interest raise an issue and I'll stick it on CloudFoundry.
